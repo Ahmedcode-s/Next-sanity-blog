@@ -1,52 +1,19 @@
-"use client";
+import Link from "next/link";
 
-import { useRouter } from "next/navigation";
-import { useSyncExternalStore, useTransition } from "react";
 
-import { disableDraftMode } from "./actions";
-
-const emptySubscribe = () => () => {};
 
 export default function AlertBanner() {
-  const router = useRouter();
-  const [pending, startTransition] = useTransition();
-
-  const shouldShow = useSyncExternalStore(
-    emptySubscribe,
-    () => window.top === window,
-    () => false,
-  );
-
-  if (!shouldShow) return null;
 
   return (
-    <div
-      className={`${
-        pending ? "animate-pulse" : ""
-      } fixed top-0 left-0 z-50 w-full border-b bg-white/95 text-black backdrop-blur`}
-    >
-      <div className="py-2 text-center text-sm">
-        {pending ? (
-          "Disabling draft mode..."
-        ) : (
-          <>
-            {"Previewing drafts. "}
-            <button
-              type="button"
-              onClick={() =>
-                startTransition(() =>
-                  disableDraftMode().then(() => {
-                    router.refresh();
-                  }),
-                )
-              }
-              className="hover:text-cyan underline transition-colors duration-200"
-            >
-              Back to published
-            </button>
-          </>
-        )}
+    <div className="fixed top-0 left-0 z-50 w-full border-b bg-black text-white lack backdrop-blur flex items-center justify-between px-4 h-16">
+      <div className="py-2 text-center text-sm font-2xl">
+        <h1>BLogs </h1>
       </div>
+      <nav className="flex space-x-6 text-sm font-medium">
+        <Link href={"/"} className="hover:text-[#ff4343]">Home</Link>
+        <Link href={"/about"} className="hover:text-[#ff4343]">About</Link>
+        <Link href={"/contact"} className="hover:text-[#ff4343]">Contact</Link>
+      </nav>
     </div>
   );
 }

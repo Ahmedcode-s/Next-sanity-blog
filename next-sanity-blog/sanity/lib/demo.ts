@@ -2,7 +2,7 @@
  * Demo data used as placeholders and initial values for the blog
  */
 
-export const title = "FpsInsight.";
+export const title = "BLogs";
 
 export const description = [
   {
@@ -25,7 +25,7 @@ export const description = [
       //   _key: "4a58edd077882",
       //   _type: "span",
       //   marks: [],
-      //   text: " and ",
+      //   text: " and ",c
       // },
       // {
       //   _key: "4a58edd077883",
